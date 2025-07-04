@@ -7,7 +7,6 @@ const noteSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    createdBy: { type: mongoose.Schema.ObjectId, ref: 'Admin', required: true },
   },
   {
     timestamps: true,
@@ -38,6 +37,7 @@ const querySchema = new mongoose.Schema(
       trim: true,
     },
     notes: [noteSchema],
+    createdBy: { type: mongoose.Schema.ObjectId, ref: 'Admin', required: true },
     isDeleted: {
       type: Boolean,
       default: false,
