@@ -17,9 +17,5 @@ methods.create = create;
 methods.update = update;
 methods.convert = convertQuoteToInvoice;
 methods.summary = summary;
-methods.childRoutes = {
-    entity: 'notes',
-    
-} 
 
 module.exports = methods;
