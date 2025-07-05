@@ -16,7 +16,7 @@ const noteSchema = new mongoose.Schema(
 
 const querySchema = new mongoose.Schema(
   {
-    customerName: {
+    client: {
       type: mongoose.Schema.ObjectId,
       ref: 'Client',
       required: true,
@@ -38,7 +38,7 @@ const querySchema = new mongoose.Schema(
     },
     notes: [noteSchema],
     createdBy: { type: mongoose.Schema.ObjectId, ref: 'Admin', required: true },
-    isDeleted: {
+    removed: {
       type: Boolean,
       default: false,
     },
