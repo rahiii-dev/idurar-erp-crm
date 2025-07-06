@@ -1,4 +1,5 @@
 import useLanguage from '@/locale/useLanguage';
+import QueryForm from '@/modules/QueryModule/Forms/QueryForm';
 import { fields } from './config';
 import CrudModule from '@/modules/CrudModule/CrudModule';
 import QueryNoteCard from '@/modules/QueryModule/components/QueryNoteCard';
@@ -62,6 +63,8 @@ export default function Query() {
 
   return (
     <CrudModule
+      createForm={<QueryForm config={config} />}
+      updateForm={<QueryForm config={config} isUpdateForm />}
       config={config}
     />
   );

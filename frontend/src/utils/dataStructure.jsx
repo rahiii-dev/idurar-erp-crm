@@ -14,6 +14,7 @@ export const dataForRead = ({ fields, translate }) => {
       title: field.label ? field.label : key,
       dataIndex: field.dataIndex ? field.dataIndex.join('.') : key,
       isDate: field.type === 'date',
+      render: field.render ? field.render : undefined
     });
   });
 
@@ -183,6 +184,21 @@ export function dataForTable({ fields, translate, moneyFormatter, dateFormat }) 
               {selectedCountry?.icon && selectedCountry?.icon + ' '}
               {selectedCountry?.label && translate(selectedCountry.label)}
             </Tag>
+          );
+        },
+      },
+      // custom component map
+      truncatedText: {
+        title: field.label ? translate(field.label) : translate(key),
+        dataIndex: keyIndex,
+        render: (_, record) => {
+          const value = record[key];
+          const maxLength = field.maxLength || 30;
+
+          return (
+            <span title={value}>
+              {value?.length > maxLength ? value.slice(0, maxLength) + '...' : value}
+            </span>
           );
         },
       },

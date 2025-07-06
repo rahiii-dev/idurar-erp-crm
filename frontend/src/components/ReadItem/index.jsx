@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
 import { useSelector } from 'react-redux';
 
@@ -29,7 +29,11 @@ export default function ReadItem({ config }) {
       const propsTitle = props.title;
       const isDate = props.isDate || false;
       let value = valueByString(currentResult, propsKey);
-      value = isDate ? dayjs(value).format(dateFormat) : value;
+      if (props.render && typeof props.render === 'function') {
+        value = props.render(currentResult ? currentResult[propsKey] : null);
+      } else if (isDate) {
+        value = dayjs(value).format(dateFormat);
+      }
       list.push({ propsKey, label: propsTitle, value: value });
     });
     setListState(list);
@@ -40,15 +44,21 @@ export default function ReadItem({ config }) {
   const itemsList = listState.map((item) => {
     return (
       <Row key={item.propsKey} gutter={12}>
-        <Col className="gutter-row" span={8}>
-          <p>{item.label}</p>
-        </Col>
-        <Col className="gutter-row" span={2}>
-          <p> : </p>
-        </Col>
-        <Col className="gutter-row" span={14}>
-          <p>{item.value}</p>
-        </Col>
+        {React.isValidElement(item.value) ? (
+          <Col span={24}>{item.value}</Col>
+        ) : (
+          <>
+            <Col className="gutter-row" span={8}>
+              <p>{item.label}</p>
+            </Col>
+            <Col className="gutter-row" span={2}>
+              <p>:</p>
+            </Col>
+            <Col className="gutter-row" span={14}>
+              <p>{item.value}</p>
+            </Col>
+          </>
+        )}
       </Row>
     );
   });
