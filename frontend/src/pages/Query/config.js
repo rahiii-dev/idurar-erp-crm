@@ -1,0 +1,46 @@
+export const fields = {
+  client: {
+    type: 'search',
+    label: 'Customer Name',
+    required: true,
+    entity: 'client',
+    displayLabels: ['name'],
+    searchFields: 'name',
+    outputValue: '_id',
+    withRedirect: true,
+    urlToRedirect: '/customer',
+    redirectLabel: 'Add New Customer',
+    dataIndex: ['client', 'name'],
+  },
+  description: {
+    type: 'textarea',
+    label: 'Description',
+    required: true,
+    dataIndex: ['description'],
+  },
+  createdAt: {
+    type: 'date',
+    label: 'Created Date',
+    dataIndex: ['createdAt'],
+    disableForForm: true,
+    disableForUpdate: true,
+  },
+  status: {
+    type: 'selectWithTranslation',
+    label: 'Status',
+    required: true,
+    renderAsTag: true,
+    options: [
+      { label: 'Open', value: 'Open', color: 'green' },
+      { label: 'InProgress', value: 'InProgress', color: 'orange' },
+      { label: 'Closed', value: 'Closed', color: 'red' },
+    ],
+    dataIndex: ['status'],
+  },
+  resolution: {
+    type: 'truncatedText',
+    label: 'Resolution',
+    required: false,
+    dataIndex: ['resolution'],
+  },
+};

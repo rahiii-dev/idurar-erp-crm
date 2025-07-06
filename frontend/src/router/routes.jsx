@@ -17,6 +17,7 @@ const Quote = lazy(() => import('@/pages/Quote/index'));
 const QuoteCreate = lazy(() => import('@/pages/Quote/QuoteCreate'));
 const QuoteRead = lazy(() => import('@/pages/Quote/QuoteRead'));
 const QuoteUpdate = lazy(() => import('@/pages/Quote/QuoteUpdate'));
+const Query = lazy(() => import('@/pages/Query/index'));
 const Payment = lazy(() => import('@/pages/Payment/index'));
 const PaymentRead = lazy(() => import('@/pages/Payment/PaymentRead'));
 const PaymentUpdate = lazy(() => import('@/pages/Payment/PaymentUpdate'));
@@ -88,6 +89,10 @@ let routes = {
     {
       path: '/quote/update/:id',
       element: <QuoteUpdate />,
+    },
+    {
+      path: '/query',
+      element: <Query />,
     },
     {
       path: '/payment',
