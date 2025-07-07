@@ -65,7 +65,7 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
 
   return (
     <>
-      <Row gutter={[12, 0]}>
+      <Row gutter={[12, 0]} >
         <Col className="gutter-row" span={8}>
           <Form.Item
             name="client"
@@ -194,7 +194,7 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
         {(fields, { add, remove }) => (
           <>
             {fields.map((field) => (
-              <ItemRow key={field.key} remove={remove} field={field} current={current}></ItemRow>
+              <ItemRow key={field.key} remove={remove} field={field} current={current} showNotes={true}></ItemRow>
             ))}
             <Form.Item>
               <Button

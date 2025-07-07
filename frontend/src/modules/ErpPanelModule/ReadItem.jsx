@@ -33,6 +33,9 @@ const Item = ({ item, currentErp }) => {
           <strong>{item.itemName}</strong>
         </p>
         <p>{item.description}</p>
+        {item.notes && (
+          <p style={{ fontStyle: 'italic', color: '#999', marginTop: 4 }}>Note: {item.notes}</p>
+        )}
       </Col>
       <Col className="gutter-row" span={4}>
         <p

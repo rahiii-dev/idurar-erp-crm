@@ -5,7 +5,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { useMoney, useDate } from '@/settings';
 import calculate from '@/utils/calculate';
 
-export default function ItemRow({ field, remove, current = null }) {
+export default function ItemRow({ field, remove, current = null, showNotes = false }) {
   const [totalState, setTotal] = useState(undefined);
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
@@ -52,7 +52,7 @@ export default function ItemRow({ field, remove, current = null }) {
   }, [price, quantity]);
 
   return (
-    <Row gutter={[12, 12]} style={{ position: 'relative' }}>
+    <Row gutter={[12, 12]} style={{ position: 'relative', marginBottom: '12px' }}>
       <Col className="gutter-row" span={5}>
         <Form.Item
           name={[field.name, 'itemName']}
@@ -66,22 +66,31 @@ export default function ItemRow({ field, remove, current = null }) {
               message: 'Item Name must contain alphanumeric or special characters',
             },
           ]}
+          style={{ marginBottom: 0 }}
         >
           <Input placeholder="Item Name" />
         </Form.Item>
       </Col>
       <Col className="gutter-row" span={7}>
-        <Form.Item name={[field.name, 'description']}>
+        <Form.Item name={[field.name, 'description']} style={{ marginBottom: 0 }}>
           <Input placeholder="description Name" />
         </Form.Item>
       </Col>
       <Col className="gutter-row" span={3}>
-        <Form.Item name={[field.name, 'quantity']} rules={[{ required: true }]}>
+        <Form.Item
+          name={[field.name, 'quantity']}
+          rules={[{ required: true }]}
+          style={{ marginBottom: 0 }}
+        >
           <InputNumber style={{ width: '100%' }} min={0} onChange={updateQt} />
         </Form.Item>
       </Col>
       <Col className="gutter-row" span={4}>
-        <Form.Item name={[field.name, 'price']} rules={[{ required: true }]}>
+        <Form.Item
+          name={[field.name, 'price']}
+          rules={[{ required: true }]}
+          style={{ marginBottom: 0 }}
+        >
           <InputNumber
             className="moneyInput"
             onChange={updatePrice}
@@ -93,8 +102,8 @@ export default function ItemRow({ field, remove, current = null }) {
         </Form.Item>
       </Col>
       <Col className="gutter-row" span={5}>
-        <Form.Item name={[field.name, 'total']}>
-          <Form.Item>
+        <Form.Item name={[field.name, 'total']} style={{ marginBottom: 0 }}>
+          <Form.Item style={{ marginBottom: 0 }}>
             <InputNumber
               readOnly
               className="moneyInput"
@@ -110,6 +119,17 @@ export default function ItemRow({ field, remove, current = null }) {
           </Form.Item>
         </Form.Item>
       </Col>
+
+      {showNotes && (
+        <Col className="gutter-row" span={24}>
+          <Form.Item name={[field.name, 'notes']}>
+            <Input.TextArea
+              placeholder="Notes for this item (optional)"
+              autoSize={{ minRows: 2, maxRows: 4 }}
+            />
+          </Form.Item>
+        </Col>
+      )}
 
       <div style={{ position: 'absolute', right: '-20px', top: ' 5px' }}>
         <DeleteOutlined onClick={() => remove(field.name)} />
