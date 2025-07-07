@@ -71,6 +71,9 @@ const invoiceSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
+      notes: {
+        type: String,
+      },
       // discount: {
       //   type: Number,
       //   default: 0,

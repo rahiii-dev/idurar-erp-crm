@@ -304,6 +304,8 @@ html
               tr
                 td.service #{item.itemName}
                   span #{item.description}
+                  if item.notes
+                    span(style="color: #777; font-style: italic") #{translate('Note')}: #{item.notes}
                 td.qty #{item.quantity}  
                 td.unit  #{moneyFormatter({amount:item.price})}
                 td.total #{moneyFormatter({amount:item.total})}
