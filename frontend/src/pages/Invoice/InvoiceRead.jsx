@@ -16,6 +16,7 @@ export default function InvoiceRead() {
   const configPage = {
     entity,
     ...Labels,
+    showItemNoteSummary: true,
   };
   return <ReadInvoiceModule config={configPage} />;
 }
