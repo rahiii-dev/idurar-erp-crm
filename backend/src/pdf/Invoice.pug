@@ -309,6 +309,7 @@ html
                 td.qty #{item.quantity}  
                 td.unit  #{moneyFormatter({amount:item.price})}
                 td.total #{moneyFormatter({amount:item.total})}
+
             tr
               td(colspan='3') #{translate('SUB TOTAL')}
               td.total #{moneyFormatter({amount:model.subTotal})}
@@ -318,7 +319,13 @@ html
             tr
               td.grand.total(colspan='3')  #{translate('TOTAL')} 
               td.grand.total #{moneyFormatter({amount:model.total})}
-        
+              
+            if model.itemsNoteSummary
+              tr
+                td(colspan='4')
+                  div(style='margin-top: 20px; text-align: left;')
+                    p(style='font-weight: bold; color: #52008c;') #{translate('Summary of Item Notes')}:
+                    p #{model.itemsNoteSummary}        
       .col.col-24
           .space     
       footer.footer-invoice

@@ -18,6 +18,7 @@ const routerApp = (entity, controller) => {
 
   if (entity === 'invoice' || entity === 'quote' || entity === 'payment') {
     router.route(`/${entity}/mail`).post(catchErrors(controller['mail']));
+    router.route(`/${entity}/:id/summarize-items-note`).post(catchErrors(controller['summarizeItemsNote']));
   }
 
   if (entity === 'quote') {

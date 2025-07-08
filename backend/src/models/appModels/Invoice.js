@@ -96,6 +96,10 @@ const invoiceSchema = new mongoose.Schema({
       },
     },
   ],
+  itemsNoteSummary: {
+    type: String,
+    default: '',
+  },
   taxRate: {
     type: Number,
     default: 0,
