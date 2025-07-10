@@ -1,0 +1,9 @@
+services:
+  integration:
+    build: .
+    image: integration-service
+    container_name: integration-service
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
